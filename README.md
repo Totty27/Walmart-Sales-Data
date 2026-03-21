@@ -18,9 +18,27 @@ The dataset contains weekly sales records across multiple stores, along with inf
 - Exploring trends and patterns in weekly sales
 - Comparing performance across stores
 - Evaluating relationships between sales and external factors
+  
 # Data Source/s
+The dataset for this project was downloaded from Kaggle, and the excel sheet have been added to this repository:
+
+The dataset feautures the follong 8 columns:
+- Store
+- Date
+- Weekly Sales
+- Holiday Flag
+- Temperature
+- Fuel Price
+- CPI
+- Unemployment
+  
 # Tools
+- Microsoft Excel
+- Power Query Editor
+  
 # Data Inspection, Cleaning & Validation
+## Data Inspection
+## 
 # Exploratory Data Analysis
 # Data Analysis
 # Analysis Findings
