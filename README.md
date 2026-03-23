@@ -22,7 +22,7 @@ The dataset contains weekly sales records across multiple stores, along with inf
 # Data Source/s
 The dataset for this project was downloaded from Kaggle, and the excel sheet have been added to this repository:
 
-The dataset feautures the follong 8 columns:
+The dataset feautures the follong 8 columns and 51 488 rows:
 - Store
 - Date
 - Weekly Sales
