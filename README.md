@@ -12,7 +12,7 @@ The dataset contains weekly sales records across multiple stores, along with inf
 - Seasonal effects (Holiday Flag)
 - Unemployment Rate
   
-## The analysis will involve:
+## The analysis involves:
 
 - Inspecting, cleaning, validating, and preparing the dataset for data analysis.
 - Exploring trends and patterns in weekly sales.
