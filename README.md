@@ -84,9 +84,35 @@ Add another custom column and editing it as the following:
    - Total average values
    - Median.
 
-9. Perfoming 
+9. Removing or deleting extra spaces.
+    - To remove extra spaces from the dataset, I applied the following steps in every        column in table:
 
+``` m
+#"Inserted Trimmed Text1" = Table.AddColumn(#"Removed Columns3", "Trim", each Text.Trim(Text.From([CPI], "en-ZA")), type text),
+#"Removed Columns4" = Table.RemoveColumns(#"Inserted Trimmed Text1",{"CPI"}),
+#"Reordered Columns1" = Table.ReorderColumns(#"Removed Columns4",{"Store_Number", "Date", "Weekly_Sales", "Holiday_Flag", "Temperature", "Fuel_Price", "Trim", "Unemployment"}),
+#"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns1",{{"Trim", "CPI"}}),
+#"Changed Type5" = Table.TransformColumnTypes(#"Renamed Columns2",{{"CPI", type number}})
+
+```
 # Exploratory Data Analysis
+
+I've included the EDA to explore sales data in order to answer or uncover the following key questions or insights:
+
+1. Sales Performance Insights or questions:
+   - What is the average weekly sales across all Walmart stores?
+   - Which stores has the lowest sales performance?
+   - Across all the stores, wich one generates the highest total weekly sales?
+   - How do weekly sales change over time?
+   - Are there specific weeks or seasons with higher sales compared to other seasons?
+  
+2. Holiday impact questions or insights:
+    - Which time period between holiday weeks or normal weeks produces higher sales?
+    - Which stores perfom the best during holiday periods?
+    - What is the percentage increase or decrease in sales during holidays?
+3. Store-Level questions or insights:
+    -
+    
 # Data Analysis
 # Analysis Findings
 # Recommendations
