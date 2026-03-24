@@ -51,6 +51,7 @@ The initial stage of the analysis included 3 phases, which is the data inspectio
 =COUNTA()
 =COLUMNS()
 ```
+
 4.3. Loading the dataset into power query editor.
    
 4.4. Checking, changing and verifying the data types:
