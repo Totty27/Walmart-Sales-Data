@@ -86,7 +86,7 @@ Add another custom column and editing it as the following:
    - Median.
 
 4.8. Removing or deleting extra spaces.
-    - To remove extra spaces from the dataset, I applied the following steps in every        column in table:
+    - To remove extra spaces from the dataset, I applied the following steps in every column in table:
 
 ``` m
 #"Inserted Trimmed Text1" = Table.AddColumn(#"Removed Columns3", "Trim", each Text.Trim(Text.From([CPI], "en-ZA")), type text),
@@ -96,6 +96,42 @@ Add another custom column and editing it as the following:
 #"Changed Type5" = Table.TransformColumnTypes(#"Renamed Columns2",{{"CPI", type number}})
 
 ```
+4.9. Creating Custom Columns
+- In order to simplify my analysis, I have created 5 custom columns and they are as following:
+
+  4.9.1. "Year" Column - to understand trend analysis over time.
+
+  ```m
+  = Table.AddColumn(#"Changed Type5", "Year", each Date.Year([Date]))
+
+  ```
+  4.9.2. "Month" Column - to understand seasonal and monthly patterns.
+
+  ```m
+  = Table.AddColumn(#"Removed Columns5", "Month", each Date.MonthName([Date]))
+
+  ```
+  4.9.3. "Week_Number" Column - to understand the performance of sales in a short-term basis.
+
+   ```m
+  = Table.AddColumn(#"Added Custom4", "Week_Number", each Date.WeekOfYear([Date]))
+
+  ```
+   4.9.4. "Season" Column - to understand business cycle insights.
+  
+```m
+  = Table.AddColumn(#"Added Custom5", "Season", each if Date.Month([Date]) >= 12 or Date.Month([Date]) <= 2 then "Summer"
+else if Date.Month([Date]) >= 3 and Date.Month([Date]) <= 5 then "Autumn"
+else if Date.Month([Date]) >= 6 and Date.Month([Date]) <= 8 then "Winter"
+else "Spring")
+  ```
+
+   4.9.5. "Holiday_Type" Column - to explore behavioral and event-based analysis.
+
+   ```m
+  = Table.AddColumn(#"Removed Columns6", "Holiday_Type", each if [#"Holiday_Flag"] = 1 then "Holiday" else "Non-holiday")
+
+  ```
 # 5. Exploratory Data Analysis
 
 I've included the EDA to explore sales data in order to answer or uncover the following key questions or insights:
