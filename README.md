@@ -126,7 +126,7 @@ else if Date.Month([Date]) >= 6 and Date.Month([Date]) <= 8 then "Winter"
 else "Spring")
   ```
 
-   4.9.5. "Holiday_Type" Column - to explore behavioral and event-based analysis.
+   4.9.5. Derive the "Holiday_Type" Column from the "Holiday_Flag" Column- to explore behavioral and event-based analysis.
 
    ```m
   = Table.AddColumn(#"Removed Columns6", "Holiday_Type", each if [#"Holiday_Flag"] = 1 then "Holiday" else "Non-holiday")
@@ -169,6 +169,60 @@ I've included the EDA to explore sales data in order to answer or uncover the fo
    - Are there specific dates or periods where sales spiked significantly?
      
 # 6. Data Analysis
+  6.1. Analysing Sales Performance
+  - Finding the average weekly sales accross all Walmart stores. 
+  ```m
+  =AVERAGE('Table1_1'[Weekly_Sales])
+   ```
+
+  - Finding the store/s with the lowest and highets sales performance.
+    
+    By creating a pivot table and then dragging the "Weekly_Sales" column to "Values"      field, the "Store_Number" column to "Rows" field.
+    On the pivot table, on the "Sum_Of_The_Weekly_Sales" column, sort the column in an     ascending order, to find the stores with the lowest sales, and sort in a  descending order to find the store with the highest sales performance.
+
+  - Identifying weekly sales trend over time.
+  
+    By creating a pivot table, Using the "Date", or "Years" or "Months" columns as  "Rows" and add "Weekly_Sales" column to the "Values" field.
+    
+  - Identifying weekly or seasonal sales patterns.
+    
+   6.2. Holiday Impact Analysis
+
+  - Determining which time period between holiday weeks or normal weeks produces higher sales.
+    
+   By creating a pivot table and adding the "Holiday_Type" column to the "Rows" field, and "Weekly_Sales" to the "Values" field. 
+   On the "Pivot Table Fields" right pane, navigate to "Values" field and click on "Weekly_Sales" and select the "Value field settings" option, the select "Average" to calculate the average sales for both holiday and non-holiday season.
+
+   -Calculating the percentage increase or decrease in sales during holidays.
+
+   Using Power Pivot to create a measure for the "Holiday_Average_Sales".
+```m
+   =CALCULATE(
+    AVERAGE(Table1_1[Weekly_Sales]),
+    Table1_1[Holiday_Type]= "Holiday"
+)
+```
+
+Using Power Pivot to create a measure for the "Non-holiday_Average_Sales".
+
+```m
+=CALCULATE(
+    AVERAGE(Table1_1[Weekly_Sales]),
+    Table1_1[Holiday_Type] = "Non-holiday"
+)
+```
+The finally creating a measure to calculate the change in percentage (%) - using the formula:
+
+```m
+=([Holiday_Sales_Average] - [Non-holiday_Sales_Average]) / [Non-holiday_Sales_Average]
+
+```
+ -Identify which Walmart stores show the most consistent weekly sales.
+  By creating a pivot table to calculate the average sales per store.
+ - Determine how sales performance vary across all stores.
+   By creating a pivot table to calculate the average sales and the standard deviation of the weekly sales per store.
+
+  -Identify which stores show unusually high/ low sales patterns (outliers).
 # 7. Findings or Results
 # 8. Recommendations
 # 9. Limitations
