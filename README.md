@@ -2,7 +2,7 @@
 
 # 1. Project Overview 
 
-This project analyzes Walmart's weekly sales data to uncover trends, seasonal patterns, and the impact of economic and environmental factors on retail performance, with the goal of supporting data-driven decision-making.
+This project analyzes Walmart's weekly sales data to uncover trends, seasonal patterns, and the impact of economic and environmental factors on retail performance, with the goal of supporting data-driven decision-making to help improve sales performance across all Walmart stores.
 
 The dataset contains weekly sales records across multiple stores, along with influencing variables such as:
 
@@ -23,22 +23,24 @@ The dataset contains weekly sales records across multiple stores, along with inf
 The dataset for this project was downloaded from Kaggle, and the excel sheet have been added to this repository:
 
 The dataset feautures the follong 8 columns and 51 488 rows:
-- Store
+- Store_Number
 - Date
-- Weekly Sales
-- Holiday Flag
+- Weekly_Sales
+- Holiday_Flag
 - Temperature
-- Fuel Price
+- Fuel_Price
 - CPI
 - Unemployment
   
-# 3. Tools
+# 3. Tools & Skillset
 - Microsoft Excel
 - Power Query Editor
+- Power Pivot - DAX Measures
+- Pivot tables Analysis and Slicers
   
 # 4. Data Inspection, Cleaning & Validation
 
-The initial stage of the analysis included 3 phases, which is the data inspection, data cleaning and data validation phases.
+The initial stage of the analysis included 3 phases, which is data inspection, data cleaning and data validation phases.
 
 ## In this phase of the analysis, I performed the following activities:
 
@@ -55,7 +57,7 @@ The initial stage of the analysis included 3 phases, which is the data inspectio
 4.3. Loading the dataset into power query editor.
    
 4.4. Checking, changing and verifying the data types:
-- This included changing the data type of the 'Date' column, the column included different date formats; Example;
+- This include changing the data type of the 'Date' column, the column included different date formats; Example;
   
 - In power query editor, select the 'Add Column' tab and choose 'Custom Column' at the ribbon. Modify the column by adding the following:
   
@@ -167,35 +169,35 @@ I've included the EDA to explore sales data in order to answer or uncover the fo
   
 5.7. Questions related to time-based trends: 
    - Are there specific dates or periods where sales spiked significantly?
-     
+
 # 6. Data Analysis
-  6.1. Analysing Sales Performance
-  - Finding the average weekly sales accross all Walmart stores. 
-  ```m
-  =AVERAGE('Table1_1'[Weekly_Sales])
-   ```
+## 6.1. Analysing Sales Performance
+   ### - Finding the average weekly sales accross all Walmart stores. 
+           ```m
+             =AVERAGE('Table1_1'[Weekly_Sales])
+             ```
 
-  - Finding the store/s with the lowest and highets sales performance.
+  ### - Finding the store/s with the lowest and highets sales performance.
     
-    By creating a pivot table and then dragging the "Weekly_Sales" column to "Values"      field, the "Store_Number" column to "Rows" field.
-    On the pivot table, on the "Sum_Of_The_Weekly_Sales" column, sort the column in an     ascending order, to find the stores with the lowest sales, and sort in a  descending order to find the store with the highest sales performance.
+    - By creating a pivot table and then dragging the "Weekly_Sales" column to "Values" field, the "Store_Number" column to "Rows" field.
+    - On the pivot table, on the "Sum_Of_The_Weekly_Sales" column, sort the column in an ascending order, to find the stores with the    lowest sales, and sort in a  descending order to find the store with the highest sales performance.
 
-  - Identifying weekly sales trend over time.
+  ### - Identifying weekly sales trend over time.
   
-    By creating a pivot table, Using the "Date", or "Years" or "Months" columns as  "Rows" and add "Weekly_Sales" column to the "Values" field.
+    - By creating a pivot table, Using the "Date", or "Years" or "Months" columns as  "Rows" and add "Weekly_Sales" column to the  "Values" field.
     
-  - Identifying weekly or seasonal sales patterns.
+  ### - Identifying weekly or seasonal sales patterns.
     
-   6.2. Holiday Impact Analysis
+## 6.2. Holiday Impact Analysis
 
-  - Determining which time period between holiday weeks or normal weeks produces higher sales.
+  ### - Determining which time period between holiday weeks or normal weeks produces higher sales.
     
-   By creating a pivot table and adding the "Holiday_Type" column to the "Rows" field, and "Weekly_Sales" to the "Values" field. 
-   On the "Pivot Table Fields" right pane, navigate to "Values" field and click on "Weekly_Sales" and select the "Value field settings" option, the select "Average" to calculate the average sales for both holiday and non-holiday season.
+    - By creating a pivot table and adding the "Holiday_Type" column to the "Rows" field, and "Weekly_Sales" to the "Values" field. 
+    - On the "Pivot Table Fields" right pane, navigate to "Values" field and click on "Weekly_Sales" and select the "Value field settings" option, the select "Average" to calculate the average sales for both holiday and non-holiday season.
 
-   -Calculating the percentage increase or decrease in sales during holidays.
+ ### -Calculating the percentage increase or decrease in sales during holidays.
 
-   Using Power Pivot to create a measure for the "Holiday_Average_Sales".
+   #### - Using Power Pivot to create a measure for the "Holiday_Average_Sales".
 ```m
    =CALCULATE(
     AVERAGE(Table1_1[Weekly_Sales]),
@@ -203,7 +205,7 @@ I've included the EDA to explore sales data in order to answer or uncover the fo
 )
 ```
 
-Using Power Pivot to create a measure for the "Non-holiday_Average_Sales".
+   #### - Using Power Pivot to create a measure for the "Non-holiday_Average_Sales".
 
 ```m
 =CALCULATE(
@@ -211,18 +213,196 @@ Using Power Pivot to create a measure for the "Non-holiday_Average_Sales".
     Table1_1[Holiday_Type] = "Non-holiday"
 )
 ```
-The finally creating a measure to calculate the change in percentage (%) - using the formula:
+   #### - The finally creating a measure to calculate the change in percentage (%) - using the formula:
 
 ```m
 =([Holiday_Sales_Average] - [Non-holiday_Sales_Average]) / [Non-holiday_Sales_Average]
 
 ```
- -Identify which Walmart stores show the most consistent weekly sales.
-  By creating a pivot table to calculate the average sales per store.
- - Determine how sales performance vary across all stores.
-   By creating a pivot table to calculate the average sales and the standard deviation of the weekly sales per store.
+ ### -Identify which Walmart stores show the most consistent weekly sales.
+    - By creating a pivot table to calculate the average sales per store.
+ ### - Determine how sales performance vary across all stores.
+    - By creating a pivot table to calculate the average sales and the standard deviation of the weekly sales per store.
+## 6.3. Identify Store-Level Insights
 
-  -Identify which stores show unusually high/ low sales patterns (outliers).
+ ### -Identify which stores show unusually high/ low sales patterns (outliers).
+
+  #### Average_Sales_Per_Store
+```m
+  =AVERAGE('Table1_1'[Weekly_Sales])
+```
+
+  #### Overall_Average_Sales
+```m
+
+
+  =CALCULATE(
+    AVERAGE('Table1_1'[Weekly_Sales]),
+    ALL('Table1_1'[Store_Number])
+)
+```
+
+ #### Z_Score_Measure - To Identify Outliers
+```m
+  =DIVIDE(
+    [Average_Sales_Per_Store] - [Overall_Average_Sales],
+    [Standard_Diviation]
+)
+```
+## 6.4. Identifying the influence of economic factors of weekly sales.
+
+ ### - Finding the relationship between CPI and Walmart's weekly sales
+ 
+ #### 1. CPI_VS_Sales:
+```m
+   Mean_CPI
+   
+   =AVERAGE('Table1_1'[CPI])
+   
+   STDEV_CPI
+   =CALCULATE(
+    STDEV.P('Table1_1'[CPI]),
+    ALL('Table1_1'[Store_Number])
+)
+
+CPI_VS_Sales
+
+=VAR MeanSales = [Mean_Sales]
+VAR MeanCPI = AVERAGEX(ALL('Table1_1'), 'Table1_1'[CPI])
+
+VAR Numerator =
+    SUMX(
+        ALL('Table1_1'),
+        ('Table1_1'[Weekly_Sales] - MeanSales) * ('Table1_1'[CPI] - MeanCPI)
+    )
+
+VAR DenomSales =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Weekly_Sales] - MeanSales) ^ 2)
+    )
+
+VAR DenomCPI =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[CPI] - MeanCPI) ^ 2)
+    )
+
+RETURN
+    DIVIDE(Numerator, DenomSales * DenomCPI, 0)
+```
+
+#### 2. Unemployment_Vs_Sales
+```m
+
+Mean_Unemployment
+=AVERAGE('Table1_1'[Unemployment])
+
+
+=VAR MeanSales = [Mean_Sales]
+VAR MeanUnemp = AVERAGEX(ALL('Table1_1'), 'Table1_1'[Unemployment])
+
+STDEV_Unemployment
+=STDEV.S('Table1_1'[Unemployment])
+
+VAR Numerator =
+    SUMX(
+        ALL('Table1_1'),
+        ('Table1_1'[Weekly_Sales] - MeanSales) * ('Table1_1'[Unemployment] - MeanUnemp)
+    )
+
+VAR DenomSales =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Weekly_Sales] - MeanSales) ^ 2)
+    )
+
+VAR DenomUnemp =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Unemployment] - MeanUnemp) ^ 2)
+    )
+
+RETURN
+    DIVIDE(Numerator, DenomSales * DenomUnemp, 0)
+```
+
+#### 3. FuelP_Vs_Sales
+
+```m
+Mean_Fuel
+=AVERAGE('Table1_1'[Fuel_Price])
+
+STDEV_Fuel
+=STDEV.S('Table1_1'[Fuel_Price])
+
+FuelP_Vs_Sales
+=VAR MeanSales = [Mean_Sales]
+VAR MeanFuel = AVERAGEX(ALL('Table1_1'), 'Table1_1'[Fuel_Price])
+
+VAR Numerator =
+    SUMX(
+        ALL('Table1_1'),
+        ('Table1_1'[Weekly_Sales] - MeanSales) * ('Table1_1'[Fuel_Price] - MeanFuel)
+    )
+
+VAR DenomSales =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Weekly_Sales] - MeanSales) ^ 2)
+    )
+
+VAR DenomFuel =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Fuel_Price] - MeanFuel) ^ 2)
+    )
+
+RETURN
+    DIVIDE(Numerator, DenomSales * DenomFuel, 0)
+```
+
+#### 4. Temperature_Vs_Sales
+```m
+STDEV_Temperature
+=STDEV.S('Table1_1'[Temperature])
+
+Mean_Temperature
+=AVERAGE('Table1_1'[Temperature])
+
+Temperature_Vs_Sales
+=VAR MeanSales = [Mean­_Sales]
+VAR MeanTemp = AVERAGEX(ALL('Table1_1'), 'Table1_1'[Temperature])
+
+VAR Numerator =
+    SUMX(
+        ALL('Table1_1'),
+        ('Table1_1'[Weekly_Sales] - MeanSales) * ('Table1_1'[Temperature] - MeanTemp)
+    )
+
+VAR DenomSales =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Weekly_Sales] - MeanSales) ^ 2)
+    )
+
+VAR DenomTemp =
+    SQRT(
+        SUMX(ALL('Table1_1'), ('Table1_1'[Temperature] - MeanTemp) ^ 2)
+    )
+
+RETURN
+    DIVIDE(Numerator, DenomSales * DenomTemp, 0)
+```  
+   - What is the relationship between high fuel prices and lower sales?
+     
+     How to Interpret (Quick Insight)
+•	Positive value → factor increases sales
+•	Negative value → factor decreases sales
+•	Closer to ±1 → stronger relationship
+•	Close to 0 → weak/no impact
+
+   - How does the unemployment rate affect weekly sales?
+How to Interpret (Quick Insight)
+•	Positive value → factor increases sales
+•	Negative value → factor decreases sales
+•	Closer to ±1 → stronger relationship
+•	Close to 0 → weak/no impact
+
+     
 # 7. Findings or Results
 # 8. Recommendations
 # 9. Limitations
