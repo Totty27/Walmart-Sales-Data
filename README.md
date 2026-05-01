@@ -386,7 +386,9 @@ VAR DenomTemp =
 
 RETURN
     DIVIDE(Numerator, DenomSales * DenomTemp, 0)
-```  
+```
+
+
    - What is the relationship between high fuel prices and lower sales?
      
      How to Interpret (Quick Insight)
@@ -404,6 +406,125 @@ How to Interpret (Quick Insight)
 
      
 # 7. Findings or Results
+
+## 7.1. Sales Performance Findings
+
+### 7.1.1. Average Weekly Sales:
+- Using the DAX measure =AVERAGE('Table1_1'[Weekly_Sales])
+- The average weekly sales across all Walmart stores in the dataset is approximately $1,046,965. This serves as a benchmark for identifying under and over performing stores.
+  
+### 7.1.2. Highest and Lowest Performing Stores:
+- Pivot table analysis, sorting the Sum of Weekly Sales field in ascending and descending order, revealed the following performance extremes:
+#### Top 5 High Performing Stores:
+- First Highest : Store 20 @ R301 397 792 sum of total sales.
+- Second Highest : Store 4 @ R299 543 953 sum of total sales.
+- Third Highest : Store 14 @ R288 999 911 sum of total sales.
+- Forth Highest : Store 13 @ R286 517 703 sum of total sales.
+- Fifth Highest : Store 2 @ R 275 382 441 sum of total sales.
+
+#### Top 5 Lowest Performing Stores: 
+- First Lowest : Store 33 @ R371 602 22 sum of total sales.
+- Second Lowest : Store 44 @ R432 930 88 sum of total sales.
+- Third Lowest : Store 5 @ R454 756 89 sum of total sales.
+- Forth Lowest : Store 36 @ R534 122 15 sum of total sales.
+- Fifth Lowest : Store 38 @ R551 596 26 sum of total sales.
+
+#### Conclusion:
+- The significant gap between the highest and lowest performing stores suggests structural differences which could be driven by store size, location demographics, or local economic conditions — rather than operational inefficiency alone.
+
+### 7.1.3. Weekly Sales Trend Over Time:
+- Pivot table time-series analysis using Year and Month as row fields.
+  
+#### Conclusion:
+- revealed a broadly upward sales trend across the dataset period (2010–2012), with notable volatility during Q4 each year driven by the holiday shopping season. Sales dip in January and February consistently, recovering through mid-year.
+  
+### 7.1.4. Seasonal Sales Patterns:
+
+The analysis clearly revealed the following:
+
+-	Qtr4 (October–December): Highest sales volumes driven by Thanksgiving, Black Friday, and Christmas shopping.
+-	Qtr1 (January–February): Significant post-holiday dip across nearly all stores.
+- Qtr2 & Qtr3: Moderate, stable sales with a minor uplift around July 4th and Labor Day.
+
+## 7.2. Holiday Impact Analysis Results
+### 7.2.1. Holiday vs. Non-Holiday Sales Findings:
+
+- Using a pivot table with Holiday_Type in Rows and Average of Weekly_Sales in Values, the analysis confirmed that holiday weeks produce measurably higher sales than regular weeks:
+- Holiday Average Sales : R1 122 888.
+- Non-Holiday Average Sales: R1 041 256.
+
+#### Conclusion: 
+
+- The Power Pivot DAX measures for Holiday_Sales_Average, Non-holiday_Sales_Average, and the percentage change formula confirmed an approximate 7.2% uplift in average weekly sales during holiday-flagged weeks. This uplift, while consistent, is modest — suggesting that Walmart's everyday competitive pricing and broad product assortment maintain relatively stable foot traffic even outside holiday periods.
+
+### 7.2.2. Best Performing Stores During Holiday Periods:
+
+- Stores 20, 4, and 14 consistently recorded the highest absolute sales volumes during holiday weeks.
+- Stores 10 and 13 showed disproportionately higher percentage uplift during holidays compared to their non-holiday baselines, suggesting strong community holiday shopping behaviour in those catchment areas.
+
+## 7.3. Store-Level Insights Results: 
+### 7.3.1. Sales Consistency 
+
+#### Using a pivot table calculating both average sales and standard deviation per store was used to identify consistency.
+- Stores with a lower coefficient of variation (standard deviation relative to mean) were deemed more consistent.
+- Store 20 and Store 4 demonstrated both high average sales AND relatively low variability, making them the most reliably high-performing locations.
+
+### 7.3.2. Sales Variability Across Stores
+
+- The range between the highest and lowest weekly sales figures spans several orders of magnitude, pointing to highly heterogeneous store profiles. Smaller-format or rural stores (such as Store 33, 36, and 44) consistently underperform relative to the overall average.
+
+### 7.3.3. Outlier Identification (Z-Score Analysis)
+
+#### Three DAX measures were deployed:
+- Average_Sales_Per_Store, Overall_Average_Sales, and Z_Score_Measure.
+- Using the DIVIDE and CALCULATE(... ALL()) pattern to identify statistical outliers across the store network:
+
+#### Top 5 stores classified as Low Outlier stores (Where Z-score is < -1,50): 
+- Store 33 : -1,4
+- Store 44 : -1,3
+- Store 5 : -1,3
+- Store 36 : -1,2
+- Store 38 : -1.17
+
+#### Top 5 stores classified as High Outlier stores (Where Z-score is > 1,50):
+- Store 20 : 1,88
+- Store 4 : 1,86
+- Store 14 : 1,73
+- Store 13 : 1, 70
+- Store 2 : 1,56
+
+## 7.4. Economic Factor Influence Results:
+
+### 7.4.1. CPI vs. Weekly Sales
+- Calculated via the custom DAX measure CPI_VS_Sales using SUMX over ALL rows;
+- Showed a weak negative correlation (approximately rate = -7%).
+
+#### Conclusion:
+- This suggests that as the general cost of living (as measured by CPI) increases, Walmart's sales volumes show a very slight decline, though the relationship is not strong enough to be considered a primary driver.
+
+- A plausible interpretation is that during periods of high inflation (elevated CPI), consumers may reduce discretionary spending. However, Walmart's value positioning as a discount retailer may partially insulate it from CPI pressure, as consumers trading down from premium retailers may offset losses from budget-constrained shoppers reducing basket sizes.
+
+### 7.4.2. Unemployment Rate vs. Weekly Sales
+
+- Calculated by creating an Unemployment_Vs_Sales DAX measure revealed a moderate negative correlation (approximately rate = -11%).
+  
+#### Conclusion:
+- Higher unemployment rates are associated with lower weekly sales. This is the strongest economic relationship identified across the four tested variables, consistent with the intuition that unemployment directly reduces disposable income and consumer spending power.
+
+### 7.4.3.Fuel Price vs. Weekly Sales
+
+- The FuelP_Vs_Sales measure returned a near-zero or very weakly negative correlation (approximately rate = -2%).
+- Fuel price appears to have minimal direct correlation with Walmart weekly sales in this dataset.
+- This may reflect Walmart's geographic positioning (often accessible via short local trips) and the non-discretionary nature of much of its product assortment.
+
+## 7.5. Weather / Temperature Impact Findings:
+
+
+
+
+
+
+
 # 8. Recommendations
 # 9. Limitations
 
