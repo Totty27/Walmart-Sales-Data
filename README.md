@@ -1,5 +1,16 @@
 # Walmart-Sales-Data
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Data Source/s](#data-source/s)
+- [Tools & Skillset](#tools-&-skillset)
+- [Data Inspection, Cleaning & Validation](#data-inspection,-cleaning-&-validation)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Data Analysis](#data-analysis)
+- [Findings or Results](#findings-or-results)
+- [Recommendations](#recommendations)
+- [Limitations](#limitations)
+  
 # 1. Project Overview 
 
 This project analyzes Walmart's weekly sales data to uncover trends, seasonal patterns, and the impact of economic and environmental factors on retail performance, with the goal of supporting data-driven decision-making to help improve sales performance across all Walmart stores.
@@ -387,23 +398,6 @@ VAR DenomTemp =
 RETURN
     DIVIDE(Numerator, DenomSales * DenomTemp, 0)
 ```
-
-
-   - What is the relationship between high fuel prices and lower sales?
-     
-     How to Interpret (Quick Insight)
-•	Positive value → factor increases sales
-•	Negative value → factor decreases sales
-•	Closer to ±1 → stronger relationship
-•	Close to 0 → weak/no impact
-
-   - How does the unemployment rate affect weekly sales?
-How to Interpret (Quick Insight)
-•	Positive value → factor increases sales
-•	Negative value → factor decreases sales
-•	Closer to ±1 → stronger relationship
-•	Close to 0 → weak/no impact
-
      
 # 7. Findings or Results
 
