@@ -32,7 +32,8 @@ The dataset contains weekly sales records across multiple stores, along with inf
   
 # 2. Data Source/s
 The dataset for this project was downloaded from Kaggle, and the excel sheet have been added to this repository:
-
+- Attached excel file named: Walmart_DataSet(2).xlsx.
+  
 The dataset feautures the follong 8 columns and 51 488 rows:
 - Store_Number
 - Date
