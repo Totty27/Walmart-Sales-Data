@@ -511,20 +511,54 @@ The analysis clearly revealed the following:
 #### Conclusion:
 - Higher unemployment rates are associated with lower weekly sales. This is the strongest economic relationship identified across the four tested variables, consistent with the intuition that unemployment directly reduces disposable income and consumer spending power.
 
-### 7.4.3.Fuel Price vs. Weekly Sales
+### 7.4.3. Fuel Price vs. Weekly Sales
 
 - The FuelP_Vs_Sales measure returned a near-zero or very weakly negative correlation (approximately rate = -2%).
 - Fuel price appears to have minimal direct correlation with Walmart weekly sales in this dataset.
 - This may reflect Walmart's geographic positioning (often accessible via short local trips) and the non-discretionary nature of much of its product assortment.
 
-## 7.5. Weather / Temperature Impact Findings:
-
-
-
-
-
-
-
 # 8. Recommendations
+## 8.1.  Leverage High Performing Stores as Operational Benchmarks
+
+#### Store 20 and 4 and the other 3 stores that were part of the top 5 high performing stores. A structured store benchmarking programme should be established to:
+
+- Document and replicate the operational practices, staffing models, and inventory strategies of top-performing stores.
+- Pilot best practices from Store 20 in mid-tier stores before rolling out network-wide.
+
+## 8.2. Target Intervention for Low-Performing Stores
+
+#### Stores flagged as low outliers (Z-score < -1.50), particularly Store 33, require immediate investigation. Recommended actions include:
+
+- Conduct a root-cause analysis examining local demographics, store format, competitive landscape, and operational efficiency.
+- Consider format restructuring (e.g., Neighborhood Market conversion) if the full-size format is unsuitable for the catchment area.
+- Introduce localised promotional strategies tailored to community-specific demand patterns.
+
+  ## 8.3. Place More Effort in Holiday Season Preparations
+  
+#### The 7.2% average sales uplift during holiday weeks represents a significant but potentially undercaptured opportunity. To maximise revenue during peak periods:
+
+- Begin inventory build-up and staffing increases at least 4–6 weeks before major holidays, particularly Thanksgiving and Christmas.
+- Implement targeted marketing campaigns for the pre-Christmas period (mid-November to December 24) across all stores.
+
+## 8.4. Address the Post-Holiday Demand Trough
+
+#### The consistent January sales dip represents a predictable challenge. Proactive strategies to mitigate this include:
+
+- January sales events and clearance promotions to drive traffic after the holiday period.
+- New Year / health-oriented product category promotions (fitness, wellness, fresh food) aligned with post-holiday consumer behaviour.
+- Loyalty programme incentives activated in January to sustain engagement through the low-traffic period.
+
+## 8.5. Monitor Unemployment as a Leading Sales Indicator
+
+#### Given that unemployment shows the strongest correlation with weekly sales, Walmart's retail planning teams should:
+
+- Integrate regional unemployment rate data into store-level sales forecasting models.
+- Identify stores in high-unemployment catchment areas and implement value-focused marketing (price-match guarantees, bulk savings, private label promotion) to retain economically stressed shoppers.
+
 # 9. Limitations
 
+### While the findings of the analysis display a robust directional insights, several limitations should be considered when interpreting findings and making decisions based on this analysis:
+
+- The Holiday_Type binary flag (Holiday / Non-Holiday) does not distinguish between different types of holidays (e.g., Thanksgiving vs. Christmas vs. Labor Day), which likely have very different magnitudes of sales impact. A more granular holiday classification would improve the precision of holiday impact analysis and recommendation targeting.
+- The weekly aggregation of sales data may obscure intra-week patterns, such as weekend shopping peaks or weekday promotional performance. Daily-level data would enable more precise operational recommendations around staffing, inventory replenishment, and promotional scheduling.
+- The analysis is entirely internal to Walmart's store-level data. Without competitor sales, pricing, and promotional data, it is impossible to determine whether observed sales trends reflect Walmart-specific dynamics or broader market movements. Integrating external competitive intelligence would substantially improve the explanatory power of the analysis.
